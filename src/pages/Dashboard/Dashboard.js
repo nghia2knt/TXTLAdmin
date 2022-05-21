@@ -7,8 +7,8 @@ const Dashboard = () => {
   return (
     <div id="Dashboard">
       <AdminPageTitle Title="Dashboard" />
-      <Wrapper>Dashboard 1</Wrapper>
-      <Wrapper>Dashboard 2</Wrapper>
+      <Wrapper>Giới thiệu: Bạn đang ở trang admin.</Wrapper>
+      <Wrapper>Trần Minh Nghĩa - Khóa luận tốt nghiệp - IUH</Wrapper>
     </div>
   );
 };
