@@ -1,0 +1,10 @@
+@import "../../styles/color.scss";
+
+.wrapper {
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 25px;
+  width: 100%;
+  box-shadow: 0 1px 3px $gray-2;
+  margin-bottom: 20px;
+}

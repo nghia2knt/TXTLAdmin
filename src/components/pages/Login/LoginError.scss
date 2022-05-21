@@ -1,0 +1,13 @@
+@import "../../../styles/color.scss";
+
+.login-error {
+  margin: 10px 30px;
+  padding: 20px;
+  background-color: $error-bg !important;
+
+  p {
+    color: $error-text;
+    font-size: 15px;
+    font-weight: 700;
+  }
+}

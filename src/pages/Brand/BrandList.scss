@@ -1,0 +1,49 @@
+@import "../../styles/color.scss";
+
+#brandList{
+  background-color: #fff;
+  text-align: center;
+    h2 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+  
+    a:link {
+      color: $link-1;
+      text-decoration: none;
+    }
+  
+    a:visited {
+      color: $link-1;
+    }
+  
+    .text-field{
+      width: 700px;
+
+    }
+    .input-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding: 10px;
+      gap: 30px;
+  
+    }
+  
+    .btn {
+      width: 400px !important;
+      height: 50px !important;
+      border-radius: 150px;
+      background-color: $btn-1;
+      font-weight: bold;
+    }
+  
+    .login-link {
+      margin-top: 60px;
+    }
+  
+   
+  }
+  

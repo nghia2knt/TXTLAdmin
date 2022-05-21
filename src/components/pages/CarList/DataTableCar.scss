@@ -1,0 +1,28 @@
+@import "../../../styles/color.scss";
+
+.table-car {
+  th,
+  td {
+    font-family: "Roboto Condensed", "Roboto", sans-serif;
+  }
+  tr:hover {
+    background-color: #EBECCD;
+  }
+  a:link {
+    text-decoration: none;
+    color: $link-1;
+  }
+
+  a:visited {
+    color: $link-1;
+  }
+
+}
+
+.paging-container {
+  width: 100;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+}
+

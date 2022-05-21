@@ -1,0 +1,114 @@
+@import "../../styles/color.scss";
+
+.admin-header {
+  background: #fff;
+  height: 65px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .logo-container {
+    width: 250px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: 0.1s;
+
+    a:link {
+      font-size: 32px;
+      color: $admin-header-1;
+      letter-spacing: 5px;
+      font-weight: 300;
+      transition: 0.5s;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a:visited {
+      color: $admin-header-1;
+    }
+
+    a:hover {
+      color: $admin-header-1-hover;
+    }
+
+    &.hidden {
+      width: 0;
+      padding: 0;
+
+      a {
+        display: none;
+      }
+    }
+  }
+
+  .menu-icon-container {
+    width: 60px;
+    height: 100%;
+    border: 1px solid $menu-icon-border;
+    border-top: none;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .menu-icon {
+      font-size: 30px;
+      color: $menu-icon;
+      cursor: pointer;
+    }
+  }
+
+  .account-container {
+    margin-left: auto;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-right: 10px;
+    border-left: 1px solid $menu-icon-border;
+    padding-left: 15px;
+
+    .account-icon {
+      color: $gray-4;
+      font-size: 36px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    p {
+      font-size: 15px;
+      color: $admin-header-1;
+      font-weight: normal;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    p:hover {
+      color: $custom-icon;
+    }
+  }
+
+  .icons-container {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px;
+    gap: 20px;
+
+    .custom-icon {
+      color: $custom-icon;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .custom-icon:hover {
+      transform: translate(-5px, -5px);
+      color: $admin-header-1;
+    }
+  }
+}

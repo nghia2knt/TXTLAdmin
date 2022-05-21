@@ -1,0 +1,18 @@
+@import "../../styles/color.scss";
+
+.account-popup {
+  position: absolute;
+  top: 65px;
+  right: 0;
+  width: 230px;
+  z-index: 20;
+  background-color: #fff;
+  border: solid 1px $gray-4;
+  border-bottom-left-radius: 5px;
+  color: $label-1;
+  font-size: 15px;
+
+  .popup-icon {
+    color: $admin-header-1;
+  }
+}

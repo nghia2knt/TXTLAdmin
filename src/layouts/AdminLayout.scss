@@ -1,0 +1,19 @@
+@import "../styles/color.scss";
+
+.admin-body {
+  display: flex;
+}
+
+.admin-content {
+  flex: 1;
+  background-color: $gray-3;
+  padding: 30px;
+  padding-top: 80px;
+  position: relative;
+  height: calc(100vh - 65px);
+  overflow: auto;
+
+  &.collapse {
+    margin-left: 60px;
+  }
+}

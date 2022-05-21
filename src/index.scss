@@ -1,0 +1,19 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Condensed", "Roboto", sans-serif;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar {
+  background: inherit;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9cacc;
+  border-radius: 10px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}

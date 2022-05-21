@@ -1,0 +1,25 @@
+@import "../../styles/color.scss";
+
+.admin-page-title {
+  background-color: $admin-header-2;
+  position: absolute;
+  width: 100%;
+  height: 55px;
+  padding: 20px;
+  top: 0;
+  left: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  .setting-icon {
+    font-size: 32px;
+    color: #fff;
+  }
+
+  p {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+  }
+}

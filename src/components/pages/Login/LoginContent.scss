@@ -1,0 +1,61 @@
+@import "../../../styles/color.scss";
+
+#loginContent {
+  background-color: #fff;
+  height: 450px;
+  width: 500px;
+  text-align: center;
+  border-radius: 10px;
+
+  h2 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  a:link {
+    color: $link-1;
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: $link-1;
+  }
+
+  .input-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 30px;
+    margin-top: 20px;
+    gap: 30px;
+
+    .text-field {
+      width: 400px !important;
+    }
+
+    .link-container {
+      margin-right: auto;
+      margin-left: 50px;
+    }
+  }
+
+  .btn {
+    width: 400px !important;
+    height: 50px !important;
+    border-radius: 150px;
+    background-color: $btn-1;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .signup-link {
+    margin-top: 50px;
+  }
+
+  img {
+    margin-top: 30px;
+    width: 120px;
+  }
+}
