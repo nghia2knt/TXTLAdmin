@@ -63,7 +63,7 @@ export const editCar = (id,requestBody) => (dispatch) => {
         type: ACTION_TYPES.GET_CAR,
         payload: response.data.data,
       });
-      window.location.href='/CarList'
+      window.location.href='/Cars/'+id
 
     })
     .catch((err) => {

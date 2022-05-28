@@ -7,8 +7,9 @@ import {Grid } from "@material-ui/core";
 import AdminPageTitle from "../../components/general/AdminPageTitle";
 import Wrapper from "../../components/general/Wrapper";
 import { KeyboardDateTimePicker } from "@material-ui/pickers";
-import { getInvoices, updateStatus } from "../../actions/invoices.actions";
+import { countWaitInvoice, getInvoices, updateStatus } from "../../actions/invoices.actions";
 import { onLoadingTrue } from "../../actions/user.action";
+import { Autocomplete } from "@material-ui/lab";
 
 const columns = [
     { id: 'id', label: 'Mã', minWidth: 10 },
@@ -32,23 +33,24 @@ const InvoicesList = () => {
     const data = useSelector((state) => state.invoices.invoices);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [beginDate, setBeginDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+    const [beginDate, setBeginDate] = useState(Date.now()-(72000000*7))
+    const [endDate, setEndDate] = useState(Date.now());
     const [customerName, setCustomerName] = useState(null);
     const [customerEmail, setCustomerEmail] = useState(null);
     const [customerIDCard, setCustomerIDCard] = useState(null);
     const [customerPhone, setCustomerPhone] = useState(null);
     const [carName, setCarName] = useState(null);
     const [carLicensePlate, setCarLicensePlate] = useState(null);
+    const [status, setStatus] = useState({value: null});
 
     useEffect(() => {
+      dispatch(countWaitInvoice())
       let numWeeks = 2;
       let start = new Date();
       start.setDate(start.getDate() - numWeeks * 7);
 
       let end = new Date();
       end.setDate(end.getDate() + 1);
-
         const param = {
             fromDate: start,
             toDate: end,
@@ -58,16 +60,16 @@ const InvoicesList = () => {
             customeridcard: customerIDCard,
             carName: carName,
             carLicensePlate: carLicensePlate,
+            status: status.value,
             page: 1,
             size: 100,
           }
           dispatch(onLoadingTrue())
-
           dispatch(getInvoices(param))
-    
    }, [])
  
-    
+    const statusType = [{name: "Tất cả",value:""}, {name: "Đang chờ - WAIT",value: "WAIT"}, {name: "Xác Nhận - CONFIRMED",value: "CONFIRMED"}, {name: "Hoàn thành - DONE",value: "DONE"}];
+
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
     };
@@ -97,6 +99,7 @@ const InvoicesList = () => {
       customeridcard: customerIDCard,
       carName: carName,
       carLicensePlate: carLicensePlate,
+      status: status.value,
       page: 1,
       size: 100,
     }
@@ -149,12 +152,34 @@ const InvoicesList = () => {
        <TextField id="cmnd" label="CMND" className="text-field"   onChange={(e) => setCustomerIDCard(e.target.value)}/>
        <TextField id="carName" label="Tên Xe" className="text-field"   onChange={(e) => setCarName(e.target.value)}/>
        <TextField id="carLicensePlate" label="Biển số xe" className="text-field"   onChange={(e) => setCarLicensePlate(e.target.value)}/>
+ 
+       
+            
+            
 
+  
             </Grid>
             
             
-            <Grid>
-              
+            <Grid item xs={2}>
+            <Autocomplete
+          
+                id="combo-box-status"
+                value={status}
+                onChange={(event, value) => {
+                  setStatus(value);
+                }}
+                options={statusType}
+                getOptionLabel={(option) => option.name}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    className="text-field"
+                    margin="dense"
+                    label="Trạng thái"
+                  />
+                )}
+              />
            </Grid>
         </Wrapper>
         <Button variant="contained" color="primary" className="btn" onClick={onSearch}>

@@ -43,12 +43,13 @@ const apiService = {
             Authorization: `${localStorage.getItem("token")}`,
           },
       }),
-      activeUser: (id) => axios.put(url + "/active-account/"+id, {
+      activeUser: (id) => 
+        axios.post(url+"/active-account/"+id,'', {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
           Authorization: `${localStorage.getItem("token")}`,
-        },
+        },          
     }),
       changeAvatar: (id,formData) => axios.post(url +"/"+ id + "/avatar", formData, {
           headers: {
@@ -76,6 +77,14 @@ const apiService = {
         axios.post(url , requestBody, {
           headers: { Authorization: localStorage.getItem("token") },
         }),
+        createVote: (id,requestBody) =>
+        axios.post(url + id +"/vote", requestBody, {
+          headers: { Authorization: localStorage.getItem("token") },
+        }),
+        getVote: (id) =>
+        axios.get(url + id +"/vote", {
+          headers: { Authorization: localStorage.getItem("token") },
+        }),
     };
      
     
@@ -83,8 +92,41 @@ const apiService = {
   brands(url = baseApi + "brands/") {
     return {
       brandList: () => axios.get(url),
+      getBrandInfo: (id) => axios.get(url + id),
       createBrand: (requestBody) =>
         axios.post(url , requestBody, {
+          headers: { Authorization: localStorage.getItem("token") },
+        }),
+      putBrand: (id, requestBody) =>
+        axios.put(url +id, requestBody, {
+          headers: { Authorization: localStorage.getItem("token") },
+      }),
+    };
+  },
+  votes(url = baseApi + "votes/") {
+    return {
+      getVotes: () =>
+        axios.get(url , {
+          headers: { Authorization: localStorage.getItem("token") },
+        }),
+      deleteVote: (id) =>
+        axios.delete(url + id , {
+          headers: { Authorization: localStorage.getItem("token") },
+        }),
+    };
+  },
+  message(url = baseApi + "messages/") {
+    return {
+      getMessages: () =>
+        axios.get(url , {
+          headers: { Authorization: localStorage.getItem("token") },
+        }),
+      getMessageByUserId: (id) =>
+        axios.get(url + id , {
+          headers: { Authorization: localStorage.getItem("token") },
+        }),
+      sendMess: (id, requestBody) =>
+        axios.post(url + id, requestBody, {
           headers: { Authorization: localStorage.getItem("token") },
         }),
     };
@@ -102,6 +144,7 @@ const apiService = {
         customeridcard:  param.customerIDCard,
         carName:  param.carName,
         carLicensePlate:  param.carLicensePlate,
+        status: param.status,
         page: 1,
         size: 999,
     },}),
@@ -112,6 +155,10 @@ const apiService = {
       
     getInvoice: (id) =>
       axios.get(url + id , {
+      headers: { Authorization: localStorage.getItem("token") },
+    }),
+    countInvoice: () =>
+      axios.get(url + "count/wait" , {
       headers: { Authorization: localStorage.getItem("token") },
     }),
     };

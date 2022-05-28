@@ -6,6 +6,7 @@ const initialState = {
     duration:0,
     invoices: [],
     getInvoice:null,
+    waitInvoice:0
 };
 
 
@@ -63,6 +64,22 @@ export const invoicesReducer = (state = initialState, actions) => {
           return {
             ...state,
             getInvoice: actions.payload,
+            error: actions.error
+          };
+        }
+          
+      }
+      case ACTION_TYPES.COUNT_WAIT_INVOICE:{
+        if (actions.error) {
+          return {
+            ...state,
+            error: actions.error
+          };
+        }else{
+            
+          return {
+            ...state,
+            waitInvoice: actions.payload,
             error: actions.error
           };
         }

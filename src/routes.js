@@ -13,6 +13,11 @@ import InvoicesList from "./pages/InvoicesList/InvoicesList";
 import BrandList from "./pages/Brand/BrandList";
 import InvoicesDetail from "./pages/InvoicesDetail/InvoicesDetail";
 import UserDetail from "./pages/UserDetail/UserDetail";
+import VoteList from "./pages/Votes/VoteList";
+import CarInfo from "./pages/CarInfo/CarInfo";
+import BrandEdit from "./pages/BrandEdit/BrandEdit";
+import MessageList from "./pages/Message/MessageList";
+import SendMessage from "./pages/SendMessage/SendMessage";
 
 const Router = () => {
   return useRoutes([
@@ -36,7 +41,11 @@ const Router = () => {
         { path: "BrandList", element: <BrandList /> },
         { path: "Invoices/:id", element: <InvoicesDetail /> },
         { path: "Users/:id", element: <UserDetail /> },
-
+        { path: "Votes", element: <VoteList /> },
+        { path: "Cars/:id", element: <CarInfo/> },
+        { path: "EditBrand/:id", element: <BrandEdit/> },
+        { path: "MessageList", element: <MessageList/> },
+        { path: "Messages/:id", element: <SendMessage/> },
       ],
     },
   ]);

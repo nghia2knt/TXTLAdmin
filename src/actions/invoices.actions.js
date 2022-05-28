@@ -4,7 +4,8 @@ import { onLoadingFalse } from "./user.action";
 export const ACTION_TYPES = {
     GET_INVOICES: "GET_INVOICES",
     UPDATE_STATUS: "UPDATE_STATUS",
-    GET_INVOICE: "GET_INVOICE"
+    GET_INVOICE: "GET_INVOICE",
+    COUNT_WAIT_INVOICE: "COUNT_WAIT_INVOICE"
 
 };
 
@@ -49,6 +50,21 @@ export const getInvoices = (param) => (dispatch) => {
       .then((response) => {
         dispatch({
           type: ACTION_TYPES.GET_INVOICE,
+          payload: response.data.data,
+        });
+      })
+      .catch((err) => {
+        alert(err.response.data.message.toString())
+      }).finally(()=>dispatch(onLoadingFalse()));
+  };
+
+  export const countWaitInvoice = () => (dispatch) => {
+    apiService
+      .invoices()
+      .countInvoice()
+      .then((response) => {
+        dispatch({
+          type: ACTION_TYPES.COUNT_WAIT_INVOICE,
           payload: response.data.data,
         });
       })

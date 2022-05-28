@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 
 //material
@@ -13,9 +13,10 @@ import Collapse from "@material-ui/core/Collapse";
 import RemoveIcon from "@material-ui/icons/Remove";
 
 import "./AdminNavMenu.scss";
-import { AddIcCallTwoTone, InsertComment, SettingsInputComponent } from "@material-ui/icons";
-import { Backdrop, CircularProgress, makeStyles } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { AddIcCallTwoTone, Announcement, InsertComment, Message, NotificationsActive, SettingsInputComponent } from "@material-ui/icons";
+import { Backdrop, CircularProgress, makeStyles, Typography } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { countWaitInvoice } from "../../actions/invoices.actions";
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -25,17 +26,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AdminNavMenu = (props) => {
+  const wait = useSelector((state) => state.invoices.waitInvoice);
   const [openCarManagement, setOpenCarManagement] = useState(false);
   const [openCustomerManagement, setOpenCustomerManagement] = useState(false);
   const { pathname } = useLocation();
   const classes = useStyles();
+  const dispatch = useDispatch()
 
   const open= useSelector((state) => state.user.loading);
 
   const handleIsCarManagement = () => {
     return pathname.includes("CarList") || pathname.includes("CarForm");
   };
-
+    useEffect(() => {
+      
+      dispatch(countWaitInvoice())
+  }, [])
   return (
     <div className={`admin-nav ${props.collapse && "hidden"}`}>
        <Backdrop className={classes.backdrop} open={open} >
@@ -96,7 +102,7 @@ const AdminNavMenu = (props) => {
           }`}
         >
         <SettingsInputComponent className="nav-icon" />
-        <p>Danh Sách Hãng Xe</p>
+        <p>Quản Lý Hãng Xe</p>
         </div>
       </NavLink>
 
@@ -124,7 +130,32 @@ const AdminNavMenu = (props) => {
          
         </div>
       </Collapse>
-      
+       {/**/}
+       <NavLink to="/votes" className={"nav-link-react"}>
+        <div
+          className={`nav-item ${
+            pathname.includes("votes") && "right-url"
+          }`}
+        >
+        <Announcement className="nav-icon" />
+        <p>Quản Lý Lượt Đánh Giá</p>
+        
+        </div>
+      </NavLink>
+
+      {/**/}
+      <NavLink to="/MessageList" className={"nav-link-react"}>
+        <div
+          className={`nav-item ${
+            pathname.includes("MessageList") && "right-url"
+          }`}
+        >
+        <Message className="nav-icon" />
+        <p>Quản Lý Tin Nhắn</p>
+        
+        </div>
+      </NavLink>
+
       {/* invoices */}
       <NavLink to="/Invoices" className={"nav-link-react"}>
         <div
@@ -134,6 +165,9 @@ const AdminNavMenu = (props) => {
         >
         <TodayOutlinedIcon className="nav-icon" />
         <p>Hóa đơn - Lịch Thuê Xe</p>
+        {wait>0 && (
+      <Typography variant="h6" textAlign="center" color="secondary">({wait})</Typography>
+        )} 
         </div>
       </NavLink>
 

@@ -101,7 +101,7 @@ const InvoicesDetail = () => {
                         <ListItem sx={{ py: 1, px: 0 }}>
                             <ListItemText primary="Tên xe:" />
                             
-                            <a href={"/EditCar/"+invoice.car.id}>{invoice.carName}</a>
+                            <a href={"/Cars/"+invoice.car.id}>{invoice.carName}</a>
                         </ListItem>
                         <ListItem sx={{ py: 1, px: 0 }}>
                             <ListItemText primary="Thời gian bắt đầu:" />

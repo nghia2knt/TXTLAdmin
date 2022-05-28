@@ -16,6 +16,7 @@ const columns = [
   ];
 const BrandList = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const data = useSelector((state) => state.brand.listAllBrands);
@@ -76,7 +77,7 @@ const BrandList = () => {
            <TableBody>
              {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                return (
-                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={(e)=>navigate("/EditBrand/"+row["id"])}>
                    {columns.map((column) => {
                      const value = row[column.id];
                      

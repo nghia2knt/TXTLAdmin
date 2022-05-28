@@ -194,7 +194,7 @@ const CarList = () => {
               />
             </Grid>
             <Grid item xs={4}>
-              <label>Loại Động Cơ</label>
+              <label>Loại Nhiên Liệu</label>
               <Autocomplete
                 id="combo-box-engine"
                 value={engineTypeValue}

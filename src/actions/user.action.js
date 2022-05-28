@@ -136,6 +136,7 @@ export const activeUser = (id) => (dispatch) => {
         payload: response.data.data,
       });
       alert("Kích hoạt tài khoản người dùng thành công.")
+      window.location.href='/Users/'+id
     })
     .catch((err) => {
       alert(err.response.data.message.toString())

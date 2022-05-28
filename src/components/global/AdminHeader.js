@@ -50,7 +50,7 @@ const AdminHeader = (props) => {
       {openPopup && <AccountPopup />}
 
       <div className={`logo-container ${props.collapse && "hidden"}`}>
-        <a href="/admin">TXTL</a>
+        <a href="/Dashboard">TXTL</a>
       </div>
 
       <div className="menu-icon-container" onClick={props.handleSetCollapse}>

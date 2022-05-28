@@ -69,7 +69,7 @@ const DataTable = (props) => {
   const onSelect = (id) => {
     dispatch(onLoadingTrue())
     dispatch(getCar(id))
-    navigate("/EditCar/"+id)
+    navigate("/Cars/"+id)
   }
 
   return (
