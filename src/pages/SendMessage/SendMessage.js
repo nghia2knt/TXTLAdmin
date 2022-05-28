@@ -30,7 +30,7 @@ export const disconnectSocket = () => {
 
 
 export const initiateSocketConnection = (room) => {
-	socket = io.connect('http://52.90.99.251:3009/', {reconnect: true});
+	socket = io.connect('https://38fm7gpbdf.execute-api.us-east-2.amazonaws.com', {reconnect: true});
 	console.log(`Connecting socket...`);
 }
 const SendMessage = () => {
