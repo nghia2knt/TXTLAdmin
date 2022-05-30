@@ -44,6 +44,7 @@ const InvoicesList = () => {
     const [status, setStatus] = useState({value: null});
 
     useEffect(() => {
+      setStatus({name: "Đang chờ - WAIT",value: "WAIT"});
       dispatch(countWaitInvoice())
       let numWeeks = 2;
       let start = new Date();
@@ -60,7 +61,7 @@ const InvoicesList = () => {
             customeridcard: customerIDCard,
             carName: carName,
             carLicensePlate: carLicensePlate,
-            status: status.value,
+            status: "WAIT",
             page: 1,
             size: 100,
           }
