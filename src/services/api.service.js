@@ -1,6 +1,6 @@
 import axios from "axios";
 const moment = require('moment')
-
+ 
 const baseApi = "https://4monce5w19.execute-api.us-east-2.amazonaws.com/api/";
 
 const apiService = {
@@ -163,6 +163,33 @@ const apiService = {
     }),
     };
   },
+  issues(url = baseApi + "issues") {
+    return {
+      getIssuesInvoices: (param) => axios.get(url,{
+      headers: { Authorization: localStorage.getItem("token") },
+      params: {
+        isPaid: param.isPaid
+    },}),
+    getIssueInvoiceId: (id) => 
+    axios.get(url+"/"+id, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `${localStorage.getItem("token")}`,
+    },
+    
+}),
+    create: (requestBody) =>
+            axios.post(url , requestBody, {
+              headers: { Authorization: localStorage.getItem("token") },
+            }),
+    setPaid: (id) =>
+    axios.post(url +"/"+id, {}, {
+      headers: { Authorization: localStorage.getItem("token") },
+    }),
+   
+    };
+  },
   storage(url = baseApi + "storage/") {
     return {
       uploadFile: (formData) => axios.post(url + "upload-file", formData, {
@@ -171,6 +198,23 @@ const apiService = {
             Authorization: `${localStorage.getItem("token")}`,
         },
     }),
+    
+    };
+  },
+  template(url ="https://rest.apitemplate.io/v2/create-pdf") {
+    return {
+      createPDF: (requestBody) => axios.post(url+"?template_id=b7577b2b2e003e52", requestBody, {
+        headers: {
+          "Content-Type": "application/json",
+            Authorization: "Token 76bcNzQ0MTo0NDcwOmlMQ2JOS0Ixa290UnVLT0g" ,
+        },
+    }),
+    createPDFIssue: (requestBody) => axios.post(url+"?template_id=93a77b2b2e041ff6", requestBody, {
+      headers: {
+        "Content-Type": "application/json",
+          Authorization: "Token 76bcNzQ0MTo0NDcwOmlMQ2JOS0Ixa290UnVLT0g" ,
+      },
+  }),
     };
   },
 };

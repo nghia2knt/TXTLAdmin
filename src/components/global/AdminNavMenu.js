@@ -55,7 +55,7 @@ const AdminNavMenu = (props) => {
           }`}
         >
           <DashboardOutlinedIcon className="nav-icon" />
-          <p>Dashboard</p>
+          <p>Trang Chủ</p>
         </div>
       </NavLink>
 
@@ -164,7 +164,7 @@ const AdminNavMenu = (props) => {
           }`}
         >
         <TodayOutlinedIcon className="nav-icon" />
-        <p>Hóa đơn - Lịch Thuê Xe</p>
+        <p>Lịch Thuê Xe</p>
         {wait>0 && (
       <Typography variant="h6" textAlign="center" color="secondary">({wait})</Typography>
         )} 
@@ -173,6 +173,20 @@ const AdminNavMenu = (props) => {
 
       {/* statistic */}
       
+      <NavLink to="/IssueList" className={"nav-link-react"}>
+        <div
+          className={`nav-item ${
+            pathname.includes("IssueList") && "right-url"
+          }`}
+        >
+        <Message className="nav-icon" />
+        <p>Quản Lý Hóa Đơn Phụ Thu</p>
+        
+        </div>
+      </NavLink>
+          
+
+
     </div>
   );
 };

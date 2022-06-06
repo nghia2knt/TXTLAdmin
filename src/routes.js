@@ -18,6 +18,10 @@ import CarInfo from "./pages/CarInfo/CarInfo";
 import BrandEdit from "./pages/BrandEdit/BrandEdit";
 import MessageList from "./pages/Message/MessageList";
 import SendMessage from "./pages/SendMessage/SendMessage";
+import IssueInvoicesList from "./pages/IssueInvoicesList/IssueInvoicesList";
+import IssueInfo from "./pages/IssueInfo/IssueInfo";
+import CreateIsssueInvoice from "./pages/CreateIssue/CreateIssueInvoice";
+import CreateIssueUser from "./pages/CreateIssueUser/CreateIssueUser";
 
 const Router = () => {
   return useRoutes([
@@ -46,6 +50,11 @@ const Router = () => {
         { path: "EditBrand/:id", element: <BrandEdit/> },
         { path: "MessageList", element: <MessageList/> },
         { path: "Messages/:id", element: <SendMessage/> },
+        { path: "IssueList", element: <IssueInvoicesList /> },
+        { path: "IssueList/:id", element: <IssueInfo /> },
+        { path: "CreateIssue", element: <CreateIssueUser /> },
+        { path: "CreateIssue/User/:id", element: <CreateIsssueInvoice /> },
+
       ],
     },
   ]);

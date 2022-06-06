@@ -24,9 +24,18 @@ const columns = [
     { id: 'carLicensePlate', label: 'Biển số xe', minWidth: 10 },
     { id: 'car', label: 'Hình ảnh', minWidth: 10 },
     { id: 'totalPrice', label: 'Giá tiền', minWidth: 10, format: (value) => value.toLocaleString('vi-VN') + "đ",},
-    { id: 'statusType', label: 'Trạng thái', minWidth: 10 },
+    { id: 'statusType', label: 'Trạng thái', minWidth: 10},
   ];
-  
+  const mapValue = {
+    "WAIT":"Đang chờ xác nhận",
+    "CONFIRMED":"Đã được xác nhận",
+    "LATE":"Chậm trả xe",
+    "REQ_REFUND":"Yêu cầu hoàn tiền",
+    "REFUNDED":"Đã hoàn tiền",
+    "DONE":"Thuê hoàn tất",
+    "CANCEL":""
+  }
+
 const InvoicesList = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -44,7 +53,7 @@ const InvoicesList = () => {
     const [status, setStatus] = useState({value: null});
 
     useEffect(() => {
-      setStatus({name: "Đang chờ - WAIT",value: "WAIT"});
+      setStatus({name: "Đang chờ xác nhận",value: "WAIT"});
       dispatch(countWaitInvoice())
       let numWeeks = 2;
       let start = new Date();
@@ -69,8 +78,15 @@ const InvoicesList = () => {
           dispatch(getInvoices(param))
    }, [])
  
-    const statusType = [{name: "Tất cả",value:""}, {name: "Đang chờ - WAIT",value: "WAIT"}, {name: "Xác Nhận - CONFIRMED",value: "CONFIRMED"}, {name: "Hoàn thành - DONE",value: "DONE"}];
-
+    const statusType = [{name: "Tất cả",value:""}, 
+    {name: "Đang chờ xác nhận",value: "WAIT"}, 
+    {name: "Đã được xác Nhận",value: "CONFIRMED"}, 
+    {name: "Thuê hoàn tất",value: "DONE"},
+    {name: "Chậm trả xe",value: "LATE"},
+    {name: "Yêu cầu hoàn tiền",value: "REQ_REFUND"},
+    {name: "Đã hoàn tiền",value: "REFUNDED"},
+  ];
+   
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
     };
@@ -113,7 +129,7 @@ const InvoicesList = () => {
   
     return (
       <div id="invoicesList">
-          <AdminPageTitle Title="Danh Sách Hóa Đơn" />
+          <AdminPageTitle Title="Danh Sách Lịch Đặt" />
       <Wrapper>
 
             <Grid>
@@ -216,7 +232,14 @@ const InvoicesList = () => {
                               <img src={value.image} width="200"></img>
                             </TableCell>
                           );
-                        } 
+                        } else 
+                        if (column.id == 'statusType') {
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                               {column.format && typeof value === 'number' ? column.format(value) : mapValue[value]}
+                            </TableCell>
+                          );
+                          }
                         else{
                           return (
                             <TableCell key={column.id} align={column.align}>
